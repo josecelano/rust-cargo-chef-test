@@ -1,0 +1,27 @@
+name: CI
+
+# Only trigger, when the test workflow succeeded
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CARGO_TERM_COLOR: always
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - uses: Swatinem/rust-cache@v1
+      - name: Build
+        run: cargo build --release
+      - name: Run
+        run: cargo run
+
+  docker-build:
+      runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: ./build.sh
