@@ -15,3 +15,10 @@ RUN cargo build --release --target x86_64-unknown-linux-musl --bin rust-cargo-ch
 ```
 
 It seems `cargo-chef` layer is not working. If you run again the build command without changing any dependency, it takes the same time again.
+gggg
+
+I've create an issue in the cargo-chef repo:
+
+<https://github.com/LukeMathWalker/cargo-chef/issues/172>
+
+This repo helps to reproduce the problem.
